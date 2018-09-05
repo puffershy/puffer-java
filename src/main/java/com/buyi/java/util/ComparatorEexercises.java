@@ -1,10 +1,8 @@
 package com.buyi.java.util;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.buyi.java.common.User;
+
+import java.util.List;
 
 /**
  * 排序练习
@@ -16,6 +14,6 @@ import com.buyi.java.common.User;
 public class ComparatorEexercises {
 
 	public static void normalSort(List<User> users) {
-		List<User> list = users.stream().sorted(Comparator.comparingInt(User::getId)).collect(Collectors.toList());
+//		List<User> list = users.stream().sorted(Comparator.comparingInt(User::getId)).collect(Collectors.toList());
 	}
 }

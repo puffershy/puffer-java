@@ -16,11 +16,11 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.plugin.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.projectlombok</groupId>-->
+            <!--<artifactId>lombok</artifactId>-->
+            <!--<version>${lombok.plugin.version}</version>-->
+        <!--</dependency>-->
 
 
         <!--字节码工具依赖-->
@@ -46,17 +46,22 @@
             <version>3.14.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.8</version>
+        </dependency>
 
 
     </dependencies>
 
     <build>
         <plugins>
-            <!--<plugin>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-maven-plugin</artifactId>
-                <version>${lombok.plugin.version}</version>
-            </plugin>-->
+            <!--&lt;!&ndash;<plugin>-->
+                <!--<groupId>org.projectlombok</groupId>-->
+                <!--<artifactId>lombok-maven-plugin</artifactId>-->
+                <!--<version>${lombok.plugin.version}</version>-->
+            <!--</plugin>&ndash;&gt;-->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
