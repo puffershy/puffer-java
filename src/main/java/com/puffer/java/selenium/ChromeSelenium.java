@@ -1,4 +1,4 @@
-package com.buyi.java.selenium;
+package com.puffer.java.selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

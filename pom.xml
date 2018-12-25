@@ -11,16 +11,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <lombok.plugin.version>1.16.18</lombok.plugin.version>
         <java.version>1.8</java.version>
+        <lombok.plugin.version>1.16.18</lombok.plugin.version>
     </properties>
 
     <dependencies>
-        <!--<dependency>-->
-            <!--<groupId>org.projectlombok</groupId>-->
-            <!--<artifactId>lombok</artifactId>-->
-            <!--<version>${lombok.plugin.version}</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.plugin.version}</version>
+        </dependency>
 
 
         <!--字节码工具依赖-->
@@ -57,11 +57,11 @@
 
     <build>
         <plugins>
-            <!--&lt;!&ndash;<plugin>-->
-                <!--<groupId>org.projectlombok</groupId>-->
-                <!--<artifactId>lombok-maven-plugin</artifactId>-->
-                <!--<version>${lombok.plugin.version}</version>-->
-            <!--</plugin>&ndash;&gt;-->
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>${lombok.plugin.version}</version>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

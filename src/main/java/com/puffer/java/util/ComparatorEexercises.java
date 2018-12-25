@@ -1,6 +1,6 @@
-package com.buyi.java.util;
+package com.puffer.java.util;
 
-import com.buyi.java.common.User;
+import com.puffer.java.common.User;
 
 import java.util.List;
 

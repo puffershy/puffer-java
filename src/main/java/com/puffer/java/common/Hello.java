@@ -1,4 +1,4 @@
-package com.buyi.java.common;
+package com.puffer.java.common;
 
 public class Hello {
 
