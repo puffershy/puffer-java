@@ -29,7 +29,7 @@ public class SimpleThread {
 
         // 多线程计算日切数据
         for (int batchNo = 0; batchNo < batchNum; batchNo++) {
-            executorService.execute(new ThreadJob());
+            executorService.execute(new ThreadJob(countDownLatch));
         }
 
         try {
