@@ -3,9 +3,11 @@ package com.puffer.java.common;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.lang3.RandomUtils;
 import org.testng.collections.Lists;
 
 import java.util.List;
+import java.util.Random;
 
 @Data
 @Builder
@@ -19,7 +21,8 @@ public class User {
     public static List<User> newList(int size) {
         List<User> list = Lists.newArrayList();
         for (int i = 0; i < size; i++) {
-            User user = User.builder().id(i + 1).name("P" + i).sex((i + 1) % 2).build();
+
+            User user = User.builder().id(RandomUtils.nextInt(1, 9) + 1).name("P" + i).sex((i + 1) % 2).build();
             list.add(user);
         }
 

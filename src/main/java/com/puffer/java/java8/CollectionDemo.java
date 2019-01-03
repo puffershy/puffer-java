@@ -123,4 +123,8 @@ public class CollectionDemo {
             System.out.println(user.getName());
         });
     }
+
+    public static void sort(List<User> users){
+
+    }
 }

@@ -9,14 +9,16 @@ import java.util.concurrent.CountDownLatch;
  */
 public class ThreadJob implements Runnable {
     private final CountDownLatch countDownLatch;
+    private final int batchNo;
 
-    public ThreadJob(CountDownLatch countDownLatch) {
+    public ThreadJob(CountDownLatch countDownLatch, int batchNo) {
         this.countDownLatch = countDownLatch;
+        this.batchNo = batchNo;
     }
 
     @Override
     public void run() {
-
+        System.out.println(batchNo);
         countDownLatch.countDown();
     }
 }

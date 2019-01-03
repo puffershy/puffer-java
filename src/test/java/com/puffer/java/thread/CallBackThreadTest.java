@@ -1,23 +1,26 @@
 package com.puffer.java.thread;
 
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.testng.annotations.Test;
+import org.testng.collections.Lists;
 
+import java.util.List;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-/**
- * 简单线程
- *
- * @author buyi
- * @date 2019年01月02日 17:21:17
- * @since 1.0.0
- */
-public class SimpleThread {
-    public static void main(String[] args) {
+import static org.testng.Assert.*;
+
+public class CallBackThreadTest {
+
+    @Test
+    public void testCall() throws ExecutionException, InterruptedException {
+
         // 创建线程池
         int batchNum = 8;
         int DEFAULT_THREAD_NUM = 4;
@@ -27,17 +30,25 @@ public class SimpleThread {
 
         final CountDownLatch countDownLatch = new CountDownLatch(batchNum);
 
+        List<Future<Boolean>> resultList = Lists.newArrayList();
+
         // 多线程计算日切数据
         for (int batchNo = 0; batchNo < batchNum; batchNo++) {
-            executorService.execute(new ThreadJob(countDownLatch,batchNo));
+            // executorService.execute(new CallBackThread(countDownLatch));
+            Future<Boolean> submit = executorService.submit(new CallBackThread(countDownLatch, batchNo));
+            resultList.add(submit);
+            System.out.println("over" + batchNo);
+            // System.out.println(resultList + " " + batchNo);
         }
 
         try {
             countDownLatch.await();
+            System.out.println(resultList);
         } catch (Exception e) {
             System.out.println("异常");
         } finally {
             executorService.shutdown();// 关闭线程池
         }
+
     }
 }
