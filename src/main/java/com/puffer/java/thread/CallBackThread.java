@@ -21,10 +21,20 @@ public class CallBackThread implements Callable<Boolean> {
     }
 
     @Override
-    public Boolean call() throws Exception {
-        System.out.println(Thread.currentThread() +""+ batchNo);
-        Thread.sleep(1000);
-        countDownLatch.countDown();
+    public Boolean call() {
+        System.out.println(Thread.currentThread() + "" + batchNo);
+        try {
+            Thread.sleep(1000);
+            if (batchNo % 2 == 0) {
+                throw new RuntimeException("模拟异常");
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            countDownLatch.countDown();
+        }
+
         return false;
     }
 }

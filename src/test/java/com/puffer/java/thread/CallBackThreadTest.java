@@ -43,6 +43,15 @@ public class CallBackThreadTest {
 
         try {
             countDownLatch.await();
+            resultList.forEach(booleanFuture -> {
+                try {
+                    System.out.println(booleanFuture.get());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+            });
             System.out.println(resultList);
         } catch (Exception e) {
             System.out.println("异常");
