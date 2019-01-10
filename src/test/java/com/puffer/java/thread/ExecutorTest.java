@@ -47,37 +47,41 @@ public class ExecutorTest {
     // }
 
     public static void main(String[] args) throws InterruptedException {
+        int testSize = 10000;
 
-        ConcurrentHashMap<Integer, List<Integer>> map = new ConcurrentHashMap<>();
-        int size = 100000;
-        List<Integer> list = buildList(size);
+        for (int i = 0; i < testSize; i++) {
 
-        Map<Integer, Integer> listMap = buildMap(list);
+            ConcurrentHashMap<Integer, List<Integer>> map = new ConcurrentHashMap<>();
+            int size = 100000;
+            List<Integer> list = buildList(size);
 
-        int batchSize = 5;
-        int batchNo = (list.size() - 1) / batchSize + 1;
+            Map<Integer, Integer> listMap = buildMap(list);
 
-        final CountDownLatch countDownLatch = new CountDownLatch(batchNo);
-        ExecutorService executorService = Executors.newScheduledThreadPool(6);
+            int batchSize = 5;
+            int batchNo = (list.size() - 1) / batchSize + 1;
 
-        List<List<Integer>> partition = Lists.partition(list, batchSize);
-        partition.forEach(subList -> {
-            executorService.execute(new ThreadTest(countDownLatch, subList, map));
-        });
+            final CountDownLatch countDownLatch = new CountDownLatch(batchNo);
+            ExecutorService executorService = Executors.newScheduledThreadPool(6);
 
-        countDownLatch.await();
+            List<List<Integer>> partition = Lists.partition(list, batchSize);
+            partition.forEach(subList -> {
+                executorService.execute(new ThreadTest(countDownLatch, subList, map));
+            });
 
-        map.forEach((key, value) -> {
-            // System.out.println(key + "["+value.size()+"]=" + value);
-            //     Assert.assertEquals(value.size(), listMap.get(key).intValue());
+            countDownLatch.await();
 
-                if(value.size() != listMap.get(key).intValue()){
-                    System.out.println( key +"不相等"+ value.size()+"-"+listMap.get(key).intValue());
+            map.forEach((key, value) -> {
+                // System.out.println(key + "["+value.size()+"]=" + value);
+                //     Assert.assertEquals(value.size(), listMap.get(key).intValue());
+
+                if (value.size() != listMap.get(key).intValue()) {
+                    System.out.println(key + "不相等" + value.size() + "-" + listMap.get(key).intValue());
                 }
 
-        });
+            });
 
-        System.out.println("end。。。。。。。。。。。。。。。。。");
+            System.out.println("end。。。。。。。。。。。。。。。。。" + i);
+        }
 
     }
 
